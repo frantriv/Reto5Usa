@@ -26,9 +26,11 @@ public class CostumeController {
     @ResponseStatus(HttpStatus.CREATED)
     public Costume save (@RequestBody Costume costume){ return costumeService.save(costume); }
 
+    @ResponseStatus(HttpStatus.CREATED)
     @PutMapping("/update")
     public Costume update (@RequestBody Costume costume){ return costumeService.update(costume); }
 
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{id}")
     public boolean delete (@PathVariable("id") int carId){ return costumeService.delete(carId); }
 }

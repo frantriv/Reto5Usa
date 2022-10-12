@@ -32,9 +32,11 @@ public class CategoryController {
         return categoryService.save(category);
     }
 
+    @ResponseStatus(HttpStatus.CREATED)
     @PutMapping("/update")
     public Category update (@RequestBody Category category) { return categoryService.update(category); }
 
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{id}")
     public boolean delete (@PathVariable("id") int carId){
         return categoryService.delete(carId);
