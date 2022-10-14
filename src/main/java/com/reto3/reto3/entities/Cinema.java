@@ -7,29 +7,30 @@ import java.io.Serializable;
 import java.util.List;
 
 @Entity
-@Table(name = "costume")
-public class Costume implements Serializable {
+@Table(name = "cinema")
+public class Cinema implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
-    private String brand;
-    @Column(name = "years")
-    private Integer year;
+
+    private String owner;
+    @Column(name = "capacity")
+    private Integer capacity;
     private String description;
 
     @ManyToOne
     @JoinColumn(name = "categoryId")
-    @JsonIgnoreProperties("costumes")
+    @JsonIgnoreProperties("cinemas")
     private Category category;
 
-    @OneToMany (cascade = {CascadeType.PERSIST}, mappedBy = "costume")
-    @JsonIgnoreProperties ({"costume", "client"})
+    @OneToMany (cascade = {CascadeType.PERSIST}, mappedBy = "cinema")
+    @JsonIgnoreProperties ({"cinema", "client"})
     public List<Message> messages;
 
-    @OneToMany (cascade = {CascadeType.PERSIST}, mappedBy = "costume")
-    @JsonIgnoreProperties ({"costume", "messages"})
+    @OneToMany (cascade = {CascadeType.PERSIST}, mappedBy = "cinema")
+    @JsonIgnoreProperties ({"cinema", "messages"})
     public List<Reservation> reservations;
 
     public Integer getId() {
@@ -48,20 +49,20 @@ public class Costume implements Serializable {
         this.name = name;
     }
 
-    public String getBrand() {
-        return brand;
+    public String getOwner() {
+        return owner;
     }
 
-    public void setBrand(String brand) {
-        this.brand = brand;
+    public void setOwner(String brand) {
+        this.owner = brand;
     }
 
-    public Integer getYear() {
-        return year;
+    public Integer getCapacity() {
+        return capacity;
     }
 
-    public void setYear(Integer year) {
-        this.year = year;
+    public void setCapacity(Integer capacity) {
+        this.capacity = capacity;
     }
 
     public String getDescription() {
